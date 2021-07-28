@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+.cont-info-styles {
+  background-color: #8181818f;
+}
+
+/* .cont-info { */
+  /* display: none; */
+  /* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #818181d3;
+}
+
+.show {
+  display: flex;
+} */
