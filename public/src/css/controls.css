@@ -1,0 +1,19 @@
+.touch-controls {
+  width: 100px;
+  height: 100px;
+  left: 20px;
+  bottom: 20px;
+  display: none;
+}
+
+.touch-controls__joystick {
+  width: 60px;
+  height: 60px;
+  transform: translate( 32%, 32%);
+}
+
+@media (max-width: 900px) {
+  .touch-controls {
+    display: block;
+  }
+}

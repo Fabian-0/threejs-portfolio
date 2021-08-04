@@ -4,7 +4,7 @@ import { GLTFLoader } from "../threeModuls/GLTFLoader.js";
 const loader = new GLTFLoader();
 function PrincipalScene() {
   return new Promise((resolve, reject) => {
-    loader.load('src/3dmodels/portfolio.glb', 
+    loader.load('./3dmodels/portfolio.glb', 
     function ( object ) {
       return resolve(object);
     },
