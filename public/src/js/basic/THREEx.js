@@ -1,15 +1,14 @@
 const THREEx = {};
-const reference = document.getElementById('auxReference');
+export const reference = document.getElementById('auxReference');
 
-let height = null;
-let width = null;
+let height = reference.offsetHeight;
+let width = reference.offsetWidth;
 
 THREEx.WindowResize	= function(renderer, camera, controls){
+	
 	const callback	= function(){
-
 		height = reference.offsetHeight;
 		width = reference.offsetWidth;
-
 		renderer.setSize( width, height );
 		camera.aspect	= width / height;
 		camera.updateProjectionMatrix();
@@ -25,7 +24,7 @@ THREEx.WindowResize	= function(renderer, camera, controls){
 		 * Stop watching window resize
 		*/
 		stop	: function(){
-			window.removeEventListener('resize', callback);
+			reference.removeEventListener('resize', callback);
 		}
 	};
 };

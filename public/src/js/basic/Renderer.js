@@ -1,7 +1,8 @@
 import THREE from './ExportInstance.js';
+import { reference } from './THREEx.js';
 
-const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
+const windowWidth = reference.offsetWidth;
+const windowHeight = reference.offsetHeight;
 const Renderer = new THREE.WebGLRenderer({antialias: true});
 
 Renderer.setSize( windowWidth, windowHeight );

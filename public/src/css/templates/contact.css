@@ -1,0 +1,14 @@
+.contact-form-inputs {
+  font-size: 1.25rem;
+  background-color: transparent;
+  box-shadow: 0 0 2px 1px #0250f7;
+}
+
+.contact-form-inputs::placeholder, .contact-form-inputs {
+  color: #fff;
+}
+
+.contact-form-inputs:focus {
+  color: #fff;
+  background-color: transparent;
+}

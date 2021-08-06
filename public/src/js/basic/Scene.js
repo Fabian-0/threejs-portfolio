@@ -1,6 +1,6 @@
 import THREE from './ExportInstance.js';
 
-// crear y configurar escena
+// Create and config scene
 
 const Scene = new THREE.Scene();
 Scene.background = new THREE.Color(0xfff0f0);

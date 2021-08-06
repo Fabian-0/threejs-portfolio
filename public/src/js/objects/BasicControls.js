@@ -6,20 +6,19 @@ class BasicControls {
       65: false, // left
       68: false, // rigth
     };
-    this.joystick = document.getElementById('joystick');
+    this.joystick = document.getElementById('joystick');;
     this.parentControls = this.joystick.parentElement;
-    this.auxVal = 10;
-    this.minX = this.parentControls.offsetLeft - (this.joystick.offsetWidth / this.auxVal);
+    this.minX = this.parentControls.offsetLeft;
     this.maxX =  this.parentControls.offsetWidth + this.parentControls.offsetLeft;
-    this.minY = this.parentControls.offsetTop - (this.joystick.offsetHeight / this.auxVal);
+    this.minY = this.parentControls.offsetTop;
     this.maxY = this.parentControls.offsetTop + this.parentControls.offsetHeight;
     this.alignX = this.parentControls.offsetLeft + (this.joystick.offsetWidth / 2);    
-    this.alignY =  this.parentControls.offsetTop + (this.joystick.offsetHeight / 2);
-    this.horizontalCenter =  this.parentControls.offsetTop + this.parentControls.offsetHeight / 2;
-    this.verticalCenter =  this.parentControls.offsetLeft + this.parentControls.offsetWidth / 2;
-    this.margin = 20;
-    this.up = this.horizontalCenter + this.margin;
-    this.down = this.horizontalCenter - this.margin;
+    this.alignY = this.parentControls.offsetTop + (this.joystick.offsetHeight / 2);
+    this.horizontalCenter =  this.parentControls.offsetTop + (this.parentControls.offsetHeight / 2);
+    this.verticalCenter =  this.parentControls.offsetLeft + (this.parentControls.offsetWidth / 2);
+    this.margin = 10;
+    this.up = this.horizontalCenter - this.margin;
+    this.down = this.horizontalCenter + this.margin;
     this.left = this.verticalCenter - this.margin;
     this.rigth = this.verticalCenter + this.margin;
     this.isTouchLeft = false;
@@ -27,38 +26,13 @@ class BasicControls {
     this.isTouchUp = false;
     this.isTouchDown = false;
   }
-  
-  addLetter(letter) {
-    this.controls[letter] = false;
-    return letter;
-  }
-
-  active(letter) {
-    if(!this.controls[letter]) return false;
-    this.controls[letter] = true;
-    return letter;
-  }
-  
-  deactive(letter) {
-    if(!this.controls[letter]) return false;
-    this.controls[letter] = false;
-    return letter;
-  }
-  
-  toggle(letter) {
-    if(!this.controls[letter]) return false;
-    this.controls[letter] = !this.controls[letter];
-    return letter;
-  }
 
   activePcControls () {
     window.addEventListener('keydown', (e) => {
-      e.preventDefault();
       this.onKeydown(e);
       return;
     });
     window.addEventListener('keyup', (e) => {
-      e.preventDefault();
       this.onKeyup(e);
       return;
     });
@@ -66,13 +40,13 @@ class BasicControls {
     return;
   }
 
-  activeMovileControls() {
-    this.joystick.addEventListener('touchmove', (e) => {
+  activeMovileControls = () => {
+    joystick.parentElement.addEventListener('touchmove', (e)=>{
       e.preventDefault();
-      this.onTouchMove(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+      this.onTouchMove(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
       return;
     });
-    this.joystick.addEventListener('touchend', (e) => {
+    this.parentControls.addEventListener('touchend', (e) => {
       e.preventDefault();
       this.onTouchEnd();
       return;
@@ -117,14 +91,14 @@ class BasicControls {
   }
 
   updateValues() {
-    this.minX = this.parentControls.offsetLeft - (this.joystick.offsetWidth / this.auxVal);
+    this.minX = this.parentControls.offsetLeft;
     this.maxX =  this.parentControls.offsetWidth + this.parentControls.offsetLeft;
-    this.minY = this.parentControls.offsetTop - (this.joystick.offsetHeight / this.auxVal);
+    this.minY = this.parentControls.offsetTop;
     this.maxY = this.parentControls.offsetTop + this.parentControls.offsetHeight;
     this.alignX = this.parentControls.offsetLeft + (this.joystick.offsetWidth / 2);    
-    this.alignY =  this.parentControls.offsetTop + (this.joystick.offsetHeight / 2);
-    this.horizontalCenter =  this.parentControls.offsetTop + this.parentControls.offsetHeight / 2;
-    this.verticalCenter =  this.parentControls.offsetLeft + this.parentControls.offsetWidth / 2;
+    this.alignY = this.parentControls.offsetTop + (this.joystick.offsetHeight / 2);
+    this.horizontalCenter =  this.parentControls.offsetTop + (this.parentControls.offsetHeight / 2);
+    this.verticalCenter =  this.parentControls.offsetLeft + (this.parentControls.offsetWidth / 2);
     this.up = this.horizontalCenter + this.margin;
     this.down = this.horizontalCenter - this.margin;
     this.left = this.verticalCenter - this.margin;

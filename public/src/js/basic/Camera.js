@@ -1,16 +1,12 @@
 import THREE from './ExportInstance.js';
+import { reference } from './THREEx.js';
+
 
 const min = 0.1;
-const max = 1000;
-const positionZ = 50;
-const positionY = 10;
-const positionX = 0;
-const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
+const max = 100;
+const windowWidth = reference.offsetWidth;
+const windowHeight = reference.offsetHeight;
 
-const Camera = new THREE.PerspectiveCamera(75, windowWidth / windowHeight, min, max);
-// Camera.position.z = positionZ;
-// Camera.position.y = positionY;
-// Camera.position.x = positionX;
+const Camera = new THREE.PerspectiveCamera(85, windowWidth / windowHeight, min, max);
 
 export default Camera;

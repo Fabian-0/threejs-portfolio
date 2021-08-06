@@ -4,6 +4,7 @@ import Renderer from "./Renderer.js";
 import Camera from "./Camera.js";
 import Scene from "./Scene.js";
 import Plane from './Plane.js';
+// import Controls from './Controls.js'; // helper
 import { Ligth } from './Iluminations.js';
 import PrincipalScene from '../objects/PrincipalScene.js';
 import GroupRobotCamera from '../objects/GroupRobotCamera.js';
@@ -12,7 +13,10 @@ import Robot from '../objects/Robot.js';
 // Globals
 
 let RobotAndCamera = null, aboutMixer = null , contactMixer = null, isReady =0;
+let delta = null;
 const clock = new THREE.Clock();
+
+// const orbitControls = Controls.AddOrbitControls(Camera, Renderer.domElement); // helper
 
 function init() {
   // Config camera in group
@@ -28,7 +32,7 @@ function init() {
   RobotAndCamera.group.position.setZ(23);
   RobotAndCamera.group.rotation.y = Math.PI;
   RobotAndCamera.group.add(Camera);
-  RobotAndCamera.addBoxesToScene(Scene);
+  // RobotAndCamera.addBoxesToScene(Scene);
   
   // Load robot model
 
@@ -69,13 +73,15 @@ function init() {
 
   closeInfo.addEventListener('click', () => {
     RobotAndCamera.addHTMLContainer.classList.add('hidden');
+    RobotAndCamera.basicControls.parentControls.classList.remove('hidden');
     RobotAndCamera.hidden = true;
+    RobotAndCamera.basicControls.updateValues();
   });
 }
 
-let delta = null;
 function animate() {
   delta = clock.getDelta();
+  // orbitControls.update() // helper
   contactMixer.update(delta);
   aboutMixer.update(delta);
   RobotAndCamera.update(delta);

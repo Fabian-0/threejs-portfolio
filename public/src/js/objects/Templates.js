@@ -34,19 +34,15 @@ templates.aboutMe = `
 </div>`;
 
 templates.contact = `
-<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-  <img class="programmer" src="./img/programmer.svg" alt="programmer">          
+<h2>Send me a message</h2>
+<div class="col-10 col-lg-5 col-ms-5 col-sm-10">
+  <input type="text" class="contact-form-inputs form-control" placeholder="Name" aria-label="First name">
 </div>
-<div class="col-lg-10 col-md-8 col-sm-6 col-12">
-  <h2>You can contact me on:</h2>
-  <div class="contact-profiles d-flex justify-content-between align-content-center">
-    <a class="text-decoration-none text-white" href="#" >Github</a>
-    <a class="text-decoration-none text-white" href="#" >Linkedin</a>
-    <a class="text-decoration-none text-white" href="#" >Indeed</a>
-    <a class="text-decoration-none text-white" href="#" >Email</a>
-    <a class="text-decoration-none text-white" href="#" >WhatsApp</a> 
-    </div>
-  
+<div class="col-10 col-lg-5 col-ms-5 col-sm-10 mt-lg-0 mt-4">
+  <input type="text" class="contact-form-inputs form-control" placeholder="Object" aria-label="Last name">
+</div>
+<div class="col-10 mt-4">
+  <textarea name="" placeholder="Message" class="contact-form-inputs form-control" id="" cols="30" rows="10"></textarea>
 </div>`;
 templates.portfolio = `<p>...Coming soon</p>`
 templates.rickAndMorty = `<p>...Coming soon</p>`

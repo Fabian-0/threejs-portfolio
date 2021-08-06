@@ -10,7 +10,9 @@ class GroupRobotCamera {
     this.robot = null;
     this.basicControls = new BasicControls();
     this.group = new THREE.Group();
+    this.origin = [0,0,23]
     this.hidden = true;
+    this.planeLimit = 40;
     this.vectorBoxesHelper =  new THREE.Vector3(0.5,0.5,0.5);
     this.boxes = [
       new CollisionBoxes(2.85,0,4.1, this.vectorBoxesHelper, 'portfolio'),
@@ -26,22 +28,26 @@ class GroupRobotCamera {
     this.helpVectorBox = new THREE.Vector3(0.2 ,0.2 ,0.2 );
     this.robotBox = new THREE.Box3();
     this.boxReference = -1;
-    this.addHTMLContainer = document.getElementById('addHTMLContainer'); // TESTS
-    this.addHTML = document.getElementById('addHTML'); // TESTS
+    this.addHTMLContainer = document.getElementById('addHTMLContainer');
+    this.addHTML = document.getElementById('addHTML');
     this.templates = templates;
   }
 
-  addBoxesToScene(scene) {
-    for (let i = 0; i < this.lengthBoxes; i++) {
-      scene.add(this.boxes[i].boxObject);  
-    }
-    return;
-  }
+  // addBoxesToScene(scene) {
+  //   for (let i = 0; i < this.lengthBoxes; i++) {
+  //     scene.add(this.boxes[i].boxObject);  
+  //   }
+  //   return;
+  // }
 
   update (delta){
+    if(this.group.position.z > this.planeLimit || this.group.position.z < -(this.planeLimit) || this.group.position.x > this.planeLimit || this.group.position.x < -(this.planeLimit)) {
+      this.group.position.set(...this.origin);
+      return;
+    };
     this.robotBox.setFromCenterAndSize(this.group.position, this.helpVectorBox);
     if(this.hidden && (this.basicControls.controls[87] || this.basicControls.isTouchUp)) {
-      this.group.translateZ(5 * delta);
+      this.group.translateZ(5 * delta);      
       this.robot.boneRobotRotate.rotation.x += 2.15 * delta;
     }
     if(this.hidden && (this.basicControls.controls[83] || this.basicControls.isTouchDown)) {
@@ -57,12 +63,12 @@ class GroupRobotCamera {
   
     if(!this.hidden) return;
     for (let i = 0; i < this.lengthBoxes; i++) {
-      if(this.robotBox.intersectsBox(this.boxes[i].boxObject.box)) {
+      if(this.robotBox.intersectsBox(this.boxes[i].boxObject)) {
         if(this.boxReference == -1) {
           this.hidden = false;
           this.boxReference = i;
-          console.log(this.boxes[i].name);
           this.addHTMLContainer.classList.remove('hidden');
+          this.basicControls.parentControls.classList.add('hidden');
           this.addHTML.innerHTML = this.templates[this.boxes[i].name];
           break;
         }
